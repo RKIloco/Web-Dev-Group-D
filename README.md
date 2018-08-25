@@ -1,2 +1,2 @@
 # Web-Dev-Group-D
-Project
+Semester Project
