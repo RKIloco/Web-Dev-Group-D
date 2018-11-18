@@ -62,27 +62,25 @@ body
 	margin: auto;
 }
 
-.hero
-{
-	position: absolute;
-	width: 1200px;
-	margin-left: 0px;
-	margin-top: 0px;
+.hero {
+    position: absolute;
+    width: 1000px;
+    margin-left: 0;
+    margin-top: 100px;
 }
 
-h1
-{
-	color: white;
-	text-transform: uppercase;
-	font-size: 70px;
-	text-align: center;
-	margin-top: 275px;
-}
+h1 {
+    color: white;
+    text-transform: uppercase;
+    font-size: 70px;
+    text-align: center;
+    margin-top: 180px;
+}﻿
 
 .button
 {
-	margin-top: 30px;
-	margin-left:440px;
+	margin-top: 0%;
+	margin-left: 0%;
 }
 
 .btn
@@ -98,6 +96,7 @@ h1
 
 .btn-one
 {
+	margin-left: 150px;
 	background-color: darkorange;
 	font-family: "Roboto", sans-serif;
 }
