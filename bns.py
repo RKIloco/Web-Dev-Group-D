@@ -66,21 +66,24 @@ class loggedin(db.Model):
 @app.route("/", methods=["GET", "POST"])
 def  index():
     message = ""
-    if request.form:
-        try:
-            if request.form.get("username") != "" and request.form.get("password") != "" and Account.query.filter_by(username=request.form.get("username")).first() == None  :
-                password = bcrypt.generate_password_hash(request.form.get("password"))
-                account = Account(username=request.form.get("username"), password=password)
-                db.session.add(account)
-                db.session.commit()
-            elif Account.query.filter_by(username=request.form.get("username")).first() != None:
-                message = "User already exists"
-            else:
-                message = "Invalid input details"
+    if loggedin.query.filter_by(account_id="1").first() is not None:
+        return redirect("/home")
+    else:
+        if request.form:
+            try:
+                if request.form.get("username") != "" and request.form.get("password") != "" and Account.query.filter_by(username=request.form.get("username")).first() == None  :
+                    password = bcrypt.generate_password_hash(request.form.get("password"))
+                    account = Account(username=request.form.get("username"), password=password)
+                    db.session.add(account)
+                    db.session.commit()
+                elif Account.query.filter_by(username=request.form.get("username")).first() != None:
+                    message = "User already exists"
+                else:
+                    message = "Invalid input details"
 
-        except Exception as e:
+            except Exception as e:
 
-            return
+                return
 
     accounts = Account.query.all()
     return render_template("index.html", accounts=accounts,message = message)
@@ -111,27 +114,33 @@ def signin():
 @app.route("/sell", methods=["GET", "POST"])
 def sell():
     message = ""
-    accountloggedin = loggedin.query.filter_by(account_id=1).first()
+    if loggedin.query.filter_by(account_id="1").first() is  None:
+        return redirect("/")
+    else:
+        accountloggedin = loggedin.query.filter_by(account_id=1).first()
 
-    if request.form:
-        if request.form.get("name") != "" and request.form.get("price") != "":
-            item = Item(name=request.form.get("name"), price=request.form.get("price"), link=request.form.get("link"), seller_name= accountloggedin.username)
-            db.session.add(item)
-            db.session.commit()
-            message = "item successfully posted"
-        else:
-            message = "Invalid item details"
+        if request.form:
+            if request.form.get("name") != "" and request.form.get("price") != "":
+                item = Item(name=request.form.get("name"), price=request.form.get("price"), link=request.form.get("link"), seller_name= accountloggedin.username)
+                db.session.add(item)
+                db.session.commit()
+                message = "item successfully posted"
+            else:
+                message = "Invalid item details"
 
     return render_template("sell.html", message = message )
 
 
 @app.route("/buy", methods=["GET", "POST"])
 def buy():
-    message = ""
-    accountloggedin = loggedin.query.filter_by(account_id=1).first()
-    if request.form:
-        bought_id= request.form.get("bought_id")
-        return redirect("/buyitem/"+bought_id)
+    if loggedin.query.filter_by(account_id="1").first() is  None:
+        return redirect("/")
+    else:
+        message = ""
+        accountloggedin = loggedin.query.filter_by(account_id=1).first()
+        if request.form:
+            bought_id= request.form.get("bought_id")
+            return redirect("/buyitem/"+bought_id)
 
 
     items = Item.query.filter(Item.seller_name != accountloggedin.username)
@@ -140,23 +149,29 @@ def buy():
 
 @app.route("/buyitem/<int:bought_id>", methods=['GET',"POST"])
 def hello_id(bought_id):
-    bought_item = Item.query.filter_by(item_id= bought_id).first()
-    accountloggedin = loggedin.query.filter_by(account_id=1).first()
-
-    if request.form  and verifyCC(request.form.get("cc")) == True:
-        toHistory = History(name=bought_item.name, price = bought_item.price, seller_name=bought_item.seller_name, link=bought_item.link, buyer_name=accountloggedin.username )
-        db.session.add(toHistory)
-        db.session.delete(bought_item)
-        db.session.commit()
-        return redirect("/buy")
+    if loggedin.query.filter_by(account_id="1").first() is  None:
+        return redirect("/")
     else:
-        message = "Error buying item"
+        bought_item = Item.query.filter_by(item_id= bought_id).first()
+        accountloggedin = loggedin.query.filter_by(account_id=1).first()
+
+        if request.form  and verifyCC(request.form.get("cc")) == True:
+            toHistory = History(name=bought_item.name, price = bought_item.price, seller_name=bought_item.seller_name, link=bought_item.link, buyer_name=accountloggedin.username )
+            db.session.add(toHistory)
+            db.session.delete(bought_item)
+            db.session.commit()
+            return redirect("/buy")
+        else:
+            message = "Error buying item"
 
     return render_template("buyitem.html" , bought_item=bought_item, message = message)
 
 
 @app.route("/home", methods=["GET"])
 def home():
+    if loggedin.query.filter_by(account_id="1").first() is  None:
+        return redirect("/")
+
     accountloggedin = loggedin.query.all()
     return render_template("home.html", accountloggedin=accountloggedin)
 
@@ -171,28 +186,31 @@ def logout():
 
 @app.route("/edit", methods=["GET", "POST"])
 def edit():
-    accountloggedin = loggedin.query.filter_by(account_id=1).first()
-    message = ""
-    if request.form:
-        if request.form.get("newname") != "" and request.form.get("newprice") != "":
-            item_id = request.form.get("item_id")
+    if loggedin.query.filter_by(account_id="1").first() is  None:
+        return redirect("/")
+    else:
+        accountloggedin = loggedin.query.filter_by(account_id=1).first()
+        message = ""
+        if request.form:
+            if request.form.get("newname") != "" and request.form.get("newprice") != "":
+                item_id = request.form.get("item_id")
 
-            newname = request.form.get("newname")
-            item = Item.query.filter_by(item_id=item_id).first()
-            item.name = newname
+                newname = request.form.get("newname")
+                item = Item.query.filter_by(item_id=item_id).first()
+                item.name = newname
 
-            newprice = request.form.get("newprice")
-            item = Item.query.filter_by(item_id=item_id).first()
-            item.price = newprice
+                newprice = request.form.get("newprice")
+                item = Item.query.filter_by(item_id=item_id).first()
+                item.price = newprice
 
-            newlink = request.form.get("newlink")
-            item = Item.query.filter_by(item_id=item_id).first()
-            item.link = newlink
+                newlink = request.form.get("newlink")
+                item = Item.query.filter_by(item_id=item_id).first()
+                item.link = newlink
 
-            db.session.commit()
-            message = "Item successfully updated"
-        else:
-            message = "Failed to Edit item"
+                db.session.commit()
+                message = "Item successfully updated"
+            else:
+                message = "Failed to Edit item"
 
     items = Item.query.filter_by(seller_name=accountloggedin.username).all()
     return render_template("edit.html", items=items, message=message)
@@ -210,8 +228,11 @@ def delete():
 
 @app.route("/history", methods=["GET"])
 def history():
-    accountloggedin = loggedin.query.first()
-    history = History.query.filter((History.buyer_name == accountloggedin.username) | (History.seller_name == accountloggedin.username)).all()
+    if loggedin.query.filter_by(account_id="1").first() is  None:
+        return redirect("/")
+    else:
+        accountloggedin = loggedin.query.first()
+        history = History.query.filter((History.buyer_name == accountloggedin.username) | (History.seller_name == accountloggedin.username)).all()
 
     return render_template("history.html", history=history)
 
