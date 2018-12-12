@@ -1,6 +1,6 @@
 # Web-Dev-Group-D
 Borbe, Iloco, Trinidad, Villegas
-
+>Dont forget to "pip install -r requirements.txt"
 
 IF DATABASE NOT EXISTING
 
