@@ -6,13 +6,15 @@ IF DATABASE NOT EXISTING
 
 In CMD type: 
 (in project directory)
--python 
+>python 
 
--from bns import db
--db.create_all()
--exit()
+>from bns import db
+
+>db.create_all()
+
+>exit()
 
 TO RUN:
 In CMD type:
--python bns.py run
+>python bns.py run
 (in project directory)
