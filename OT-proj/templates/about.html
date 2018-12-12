@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Gunhub</title>
+	</head>
+	<body>
+		<header>
+			<div class="row">
+				<div class="logo">
+					<a href=""><img src="{{ url_for('static', filename='css/Gunhub.jpg') }}"></a>
+				</div>
+
+				<ul class="main-nav">
+					<li><a href="/home">HOME</a></li>
+					<li><a href="/buy">SHOP</a></li>
+					<li><a href="/buy">BUY</a></li>
+					<li><a href="/sell">SELL</a></li>
+					<li><a href="/history">HISTORY</a></li>
+					<li><a href="/edit">EDIT</a></li>
+					<li class="active"><a href="/about">ABOUT</a></li>
+					<li><form method="GET" action="/logout"><button type="submit" class="btn-logout">LOGOUT</button></form></li>
+				</ul>
+				
+			</div>
+
+			<div class="hero">
+				<h1>About Gunhub</h1>
+				Gunhub is your all around gun buy and sell market, sell weapons to earn credit and buy weapons you want with your credit.
+
+				Developers:                          <br>
+				<img src=""> James Angelo Borbe      <br>    
+				<img src=""> Rhyan Kharl Iloco       <br>   
+				<img src=""> Roniel Nicole Trinidad  <br>   
+				<img src=""> Marc Greg Villegas         
+			</div>
+		</header>
+	</body>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+</html>

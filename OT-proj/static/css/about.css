@@ -1,0 +1,142 @@
+*
+{
+	margin: 0;
+	padding: 0;
+}
+
+header
+{
+	height: 100vh;
+}
+
+.main-nav
+{
+	float: right;
+	list-style: none;
+	margin-top: 30px;
+}
+
+.main-nav li
+{
+	display: inline-block;
+}
+
+.main-nav li a
+{
+	color: white;
+	text-decoration: none;
+	padding: 5px 20px;
+	font-family: "Roboto", sans-serif;
+	font-size: 15px;
+}
+
+.main-nav li.active a
+{
+	border: 1px solid white;
+}
+
+.main-nav li a:hover
+{
+	border: 1px solid white;
+}
+
+.logo img
+{
+	width: 150px;
+	height: auto;
+	float: left;
+	margin-top: 15px;
+}
+
+body
+{
+	font-family: monospace;
+	background-image: url(m4a1.jpg), linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5));
+	background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+	background-position: center;
+	color: white;
+	font-size: 15px;
+}
+
+.row
+{
+	max-width: 1200px;
+	margin: auto;
+}
+
+.hero {
+    position: absolute;
+    width: 1000px;
+    margin-left: 0;
+    margin-top: 100px;
+}
+
+.item-img {
+	height: 200px;
+	width: 350px;
+}
+
+.text-style {
+	color: white;
+	font-size: 13px;
+}
+
+h1 {
+    color: white;
+    text-transform: uppercase;
+    font-size: 35px;
+    text-align: left;
+    margin-top: 50px;
+}﻿
+
+h5 {
+    color: white;
+    text-transform: uppercase;
+    font-size: 35px;
+    text-align: left;
+    margin-top: 100px;
+}﻿
+
+.button
+{
+	margin-top: 0%;
+	margin-left: 0%;
+}
+
+.btn
+{
+	background-color: transparent;
+	border: none;
+	color: white;
+	padding: 12px 16px;
+	font-size: 13px;
+	cursor: pointer;
+}
+
+.btn:hover
+{
+	border: 1px solid white;
+ 	transition: all 0.3s ease-in;
+}
+
+.btn-logout {
+  background-color: transparent;
+  border: none;
+  color: white;
+  padding: 12px 16px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.btn-logout:hover {
+	border: 1px solid white;
+ 	background-color: darkorange;
+ 	transition: all 0.3s ease-in;
+}
+
+img {
+	height: 100px;
+	width: 100px;
+}

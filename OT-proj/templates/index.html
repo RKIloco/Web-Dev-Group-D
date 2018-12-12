@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Welcome to Gunhub!</title>
+  </head>
+
+  <body>
+    <div class="login-box">
+      <form method="POST" action="/">
+        <center><h1>Welcome</h1></center>
+
+        <div class="textbox">
+          <input type="text" placeholder="Username" name="username" value="">
+        </div>
+
+        <div class="textbox">
+          <input type="password" placeholder="Password" name="password" value="">
+        </div>
+        <button type="submit" class="btn" >Register</button>
+        <button type="submit" class="btn" formaction="/signin" >Login</button>
+      </form>
+    <div class="textbox">
+          <input type="text" placeholder="Message" name="" value="{{ message }}">
+    </div>
+    </div>
+  </body>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+</html>

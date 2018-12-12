@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Buy from Gunhub</title>
+  </head>
+  <body>
+    <header>
+      <div class="row">
+        <div class="logo">
+          <a href=""><img src="{{ url_for('static', filename='css/Gunhub.jpg') }}"></a>
+        </div>
+
+        <ul class="main-nav">
+          <li><form><button type="submit" formaction="/home" class="btn">HOME</button></form></li>
+          <li><form><button type="submit" formaction="/buy" class="btn">SHOP</button></form></li>
+          <li class="active"><a href="/buy">BUY</a></li>
+          <li><a href="/sell">SELL</a></li>
+          <li><a href="/history">HISTORY</a></li>
+          <li><a href="/edit">EDIT</a></li>
+          <li><a href="/about">ABOUT</a></li>
+          <li><form><button type="submit" formaction="/logout" class="btn-logout">LOGOUT</button></form></form></li>
+        </ul>
+      </div>
+      <br>
+    <h2>{{message}}<h2>
+     <h1>REVIEW item to be bought</h1>
+     <table>
+      <img src="{{bought_item.link}}">
+      Item ID: {{bought_item.item_id}} || Item name: {{bought_item.name}} ||  Price: PHP{{bought_item.price}} || Seller: {{bought_item.seller_name}}
+      <h5>Are you sure you want to buy this item?</h5>
+      <form method="POST" action = "/buyitem/{{bought_item.item_id}}">
+        <input type="hidden" value="{{bought_item.item_id}}" name="bought_id">
+        Enter your Credit Card number here: <input type="text" name="cc">
+        <button class="btn-yes" type ="submit" >Yes</button>
+      </form>
+      <form>
+      <button class="btn-no" type="submit" formaction="/buy">No</button>
+    </form>
+    <br>
+    {% for item in history %}
+    <br>
+    History_id: {{item.history_id}} || Item name: {{item.name}} ||  Price: PHP{{item.price}} || Seller: {{item.seller_name}} || Buyer: {{item.buyer_name}}
+    {% endfor %}
+    </table>
+    </header>  
+  </body>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/buyitem.css') }}">
+</html>

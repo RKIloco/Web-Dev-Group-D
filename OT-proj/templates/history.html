@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Your transaction history</title>
+  </head>
+  <body>
+    <header>
+      <div class="row">
+        <div class="logo">
+          <a href=""><img src="{{ url_for('static', filename='css/Gunhub.jpg') }}"></a>
+        </div>
+
+        <ul class="main-nav">
+          <li><form><button type="submit" formaction="/home" class="btn">HOME</button></form></li>
+          <li><a href="/buy">SHOP</a></li>
+          <li><a href="/buy">BUY</a></li>
+          <li><a href="/sell">SELL</a></li>
+          <li class="active"><a href="/history">HISTORY</a></li>
+          <li><a href="/edit">EDIT</a></li>
+          <li><a href="/about">ABOUT</a></li>
+          <li><form><button type="submit" formaction="/logout" class="btn-logout">LOGOUT</button></form></form></li>
+        </ul>
+      </div>
+      <br>
+      <div class="text-style">
+      <h1>YOUR TRANSACTION HISTORY</h1>
+        {% for item in history %}
+        <br>
+        <img src="{{item.link}}">
+        History_id: {{item.history_id}} || Item name: {{item.name}} ||  Price: PHP{{item.price}} || Seller: {{item.seller_name}} || Buyer: {{item.buyer_name}}
+        <br>
+        {% endfor %}
+      </div>
+      </header>  
+  </body>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/history.css') }}">
+</html>

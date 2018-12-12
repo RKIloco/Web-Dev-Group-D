@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sell your items to Gunhub</title>
+  </head>
+  <body>
+    <header>
+      <div class="row">
+        <div class="logo">
+          <a href=""><img src="{{ url_for('static', filename='css/Gunhub.jpg') }}"></a>
+        </div>
+
+        <ul class="main-nav">
+          <li><form><button type="submit" formaction="/home" class="btn">HOME</button></form></li>
+          <li><a href="/buy">SHOP</a></li>
+          <li><a href="/buy">BUY</a></li>
+          <li class="active"><a href="/sell">SELL</a></li>
+          <li><a href="/history">HISTORY</a></li>
+          <li><a href="/edit">EDIT</a></li>
+          <li><a href="/about">ABOUT</a></li>
+          <li><form><button type="submit" formaction="/logout" class="btn-logout">LOGOUT</button></form></form></li>
+        </ul>
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <form method="POST" action="/sell">
+        <input type="text" name="name" placeholder="NAME">
+        <input type="text" name="price" placeholder="PRICE">
+        <input type="text" name="link" placeholder="IMAGE LINK">
+        <input class="btn-sell" type="submit" value="Sell">
+        <input type="text" placeholder="Message" name="" value="{{ message }}">
+      </form>
+    </header>  
+  </body>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/sell.css') }}">
+</html>

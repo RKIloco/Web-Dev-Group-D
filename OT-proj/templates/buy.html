@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Buy from Gunhub</title>
+  </head>
+  <body>
+    <header>
+      <div class="row">
+        <div class="logo">
+          <a href=""><img src="{{ url_for('static', filename='css/Gunhub.jpg') }}"></a>
+        </div>
+
+        <ul class="main-nav">
+          <li><form><button type="submit" formaction="/home" class="btn">HOME</button></form></li>
+          <li class="active"><a href="/buy">SHOP</a></li>
+          <li><a href="/buy">BUY</a></li>
+          <li><a href="/sell">SELL</a></li>
+          <li><a href="/history">HISTORY</a></li>
+          <li><a href="/edit">EDIT</a></li>
+          <li><a href="/about">ABOUT</a></li>
+          <li><form><button type="submit" formaction="/logout" class="btn-logout">LOGOUT</button></form></form></li>
+        </ul>
+      </div>
+      <br>
+      <h1>ITEMS (that i didnt sell)</h1>
+      <table>
+      {% for item in items %}
+      <tr>
+          <td>
+            <img src="{{item.link}}">
+            Item ID: {{item.item_id}} || Item name: {{item.name}} ||  Price: PHP{{item.price}} || Seller: {{item.seller_name}}
+        </td>
+        </tr>
+      {% endfor %}
+      </table>
+
+      <form method="POST" action="/buy" style="display: inline">
+        <input type="text" name="bought_id" placeholder="ITEM ID">
+        <input class="buy-btn" type="submit" value="Buy">
+      </form>
+
+
+
+    </header>  
+  </body>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/buy.css') }}">
+</html>
