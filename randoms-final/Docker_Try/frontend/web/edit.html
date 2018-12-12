@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Edit your listing</title>
+  </head>
+  <body>
+    <header>
+      <div id="edit" class="row">
+        <div class="logo">
+          <a href=""><img src="css/gunhub.jpg"></a>
+        </div>
+        <ul class="main-nav">
+          <li><a href="/home.html">HOME</a></li>
+          <li><a href="/buy.html">SHOP</a></li>
+          <li><a href="/buy.html">BUY</a></li>
+          <li><a href="/sell.html">SELL</a></li>
+          <li><a href="/history.html">HISTORY</a></li>
+          <li class="active"><a href="/edit.html">EDIT</a></li>
+          <li><a href="/about.html">ABOUT</a></li>
+          <li><a v-on:click="logOut">LOGOUT</a></li>
+        </ul>
+
+      <br>
+      <h1>ITEMS (that i'm selling))</h1>
+       <ul>
+          <li v-for="item in items">
+          <img v-bind:src="item.link">
+          Item ID: {{item.item_id}} || Item name: {{item.name}} ||  Price: PHP{{item.price}} || Seller: {{item.seller_name}}
+          </li>
+        </ul>
+        <input type="text" name="bought_id" placeholder="ITEM ID" v-model="bought_id">
+        <input type="text"  name="newname" placeholder="NEW NAME"v-model="name">  
+        <input type="text" name="newprice" placeholder="NEW PRICE"v-model="price">
+        <input type="text" name="newlink" placeholder="NEW LINK"v-model="image">
+        <input class="btn-update" type="button" value="Update" v-on:click="editItem">
+        <br>
+        <br>
+        <input type="text" name="delete_id" placeholder="ITEM ID" v-model="delete_id">
+        <input class="btn-delete" type="button" value="Delete" v-on:click="deleteItem">
+        {{message}}
+      </div>       
+    </header>
+    <script src="js/edit.js"></script>  
+  </body>
+  <link rel="stylesheet" href="css/edit.css">
+</html>
