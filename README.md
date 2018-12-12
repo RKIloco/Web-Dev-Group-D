@@ -16,6 +16,7 @@ In CMD type:
 
 TO RUN:
 In CMD type:
+(in project directory)
 >python bns.py run
 
-(in project directory)
+
