@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Your transaction history</title>
+  </head>
+  <body>
+    <header>
+      <div id="history" class="row">
+        <div class="logo">
+          <a href=""><img src="css/gunhub.jpg"></a>
+        </div>
+        <ul class="main-nav">
+          <li><a href="/home.html">HOME</a></li>
+          <li><a href="/buy.html">SHOP</a></li>
+          <li><a href="/buy.html">BUY</a></li>
+          <li><a href="/sell.html">SELL</a></li>
+          <li class="active"><a href="/history.html">HISTORY</a></li>
+          <li><a href="/edit.html">EDIT</a></li>
+          <li><a href="/about.html">ABOUT</a></li>
+          <li><a v-on:click="logOut">LOGOUT</a></li>
+        </ul>
+      <br>
+      <h1>YOUR TRANSACTION HISTORY</h1>
+        <br>
+      <div class="text-style">
+      <ul id="itemlist">
+        <li v-for="item in items">
+          <img v-bind:src="item.link">
+            History_id: {{item.history_id}} || Item name: {{item.name}} ||  Price: PHP{{item.price}} || Seller: {{item.seller_name}} || Buyer: {{item.buyer_name}}
+        </li>
+      </ul>
+      </div>
+      </div>
+    </header>  
+    <script src="js/history.js"></script>
+  </body>
+  <link rel="stylesheet" href="css/history.css">
+</html>

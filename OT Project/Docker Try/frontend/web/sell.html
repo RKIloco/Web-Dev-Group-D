@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Sell your items to Gunhub</title>
+  </head>
+  <body>
+    <header>
+      <div id="sell" class="row">
+        <div class="logo">
+          <a href=""><img src="css/gunhub.jpg"></a>
+        </div>
+
+        <ul class="main-nav">
+          <li><a href="/home.html">HOME</a></li>
+          <li><a href="/buy.html">SHOP</a></li>
+          <li><a href="/buy.html">BUY</a></li>
+          <li class="active"><a href="/sell.html">SELL</a></li>
+          <li><a href="/history.html">HISTORY</a></li>
+          <li><a href="/edit.html">EDIT</a></li>
+          <li><a href="/about.html">ABOUT</a></li>
+          <li><a v-on:click="logOut">LOGOUT</a></li>
+        </ul>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+        <input type="text" name="name" placeholder="NAME" v-model="name">
+        <input type="text" name="price" placeholder="PRICE" v-model="price">
+        <input type="text" name="link" placeholder="IMAGE LINK" v-model="image">
+        <input class="btn-sell" type="submit" value="Sell" v-on:click="sellItem">
+        <input type="text" placeholder="Message" name="" v-model="message">
+      </div>
+    </header>  
+    <script src="js/sell.js"></script>
+  </body>
+  <link rel="stylesheet" href="css/sell.css">
+</html>

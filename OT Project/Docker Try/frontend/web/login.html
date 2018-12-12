@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+    	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<title>Welcome to Gunhub!</title>
+	</head>
+
+	<body>
+		<div id="login" class="login-box">
+			<center><h1>Welcome</h1></center>
+			<div class="textbox">
+				<input type="text" placeholder="Username" name="" value="" v-model="username"/>
+			</div>
+
+			<div class="textbox">
+				<input type="password" placeholder="Password" name="" value="" v-model="password"/>
+			</div>
+			<input class="btn" 	type="button" name="" value="Register" v-on:click="signUp"/>
+			<input class="btn" 	type="button" name="" value="Sign in" v-on:click="signIn"/>
+			<div class="textbox">
+          	<input type="text" name="" v-model="message">
+    	</div>
+		</div>
+		<script src="js/index.js"></script>
+	</body>
+	<link rel="stylesheet" href="css/login.css">
+</html>
